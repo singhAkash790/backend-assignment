@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const Project = require("./models/productsModels");
+const ProjectStatus = require("./models/productsModels");
 const Campaigns = require("./models/productsModels");
 const app = express();
 // middleware
@@ -177,7 +178,7 @@ app.get('/projectstats', async (req, res) => {
     const perPage = 5;
     const page = req.query.page || 1;
   
-    const projects = await Project.find()
+    const projects = await ProjectStatus.find()
       .skip((perPage * page) - perPage)
       .limit(perPage)
       .populate('campaigns')
@@ -226,7 +227,7 @@ app.get('/projectstats', async (req, res) => {
       totalClicksAchieved: totalClicksAchieved,
       currentPage: page,
       pages: Math.ceil(projects.length / perPage)
-    });
+    });mongoose.isObjectIdOrHexStringPOL122
   });
   
 
